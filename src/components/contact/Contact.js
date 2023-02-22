@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Loader from 'react-loaders'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { ToastContainer,toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import AnimatedLetters from "../animatedletters/AnimatedLetter"
@@ -11,7 +13,7 @@ const Contact = () => {
   const form = useRef()
 
   useEffect(() => {
-     setTimeout(() => {
+    setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
   }, [])
@@ -23,17 +25,47 @@ const Contact = () => {
       .sendForm('service_mnvp1f8', 'template_pv4rx8c', form.current, 'AvyPsVGxFFOBjz3Nt')
       .then(
         () => {
-          alert('Message successfully sent!')
-          window.location.reload(false)
+          toast.success('Message successfully sent!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          // window.location.reload(false)
         },
         () => {
-          alert('Failed to send the message, please try again')
+          toast.error('failed to sent message. please try again!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       )
   }
 
   return (
     <>
+       <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                  />
       <div className="container contact-page">
         <div className="text-zone">
           <h1>
@@ -79,24 +111,28 @@ const Contact = () => {
                 </li>
                 <li>
                   <input type="submit" className="flat-button" value="SEND" />
+                
+                  {/* Same as */}
+                 
                 </li>
               </ul>
             </form>
           </div>
+       
         </div>
         <div className="info-map">
-        Md Fahad
+          Md Fahad
           <br />
-          
+
           Ratsar ballia up 277123 <br />
-         <br />
+          <br />
           <br />
           <span>mdfahad6260@gmail.com</span>
         </div>
         <div className="map-wrap">
-          <MapContainer center={[25.8286731,84.0286477]} zoom={13}>
+          <MapContainer center={[25.8286731, 84.0286477]} zoom={13}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={[25.8286731, 	84.0286477]}>
+            <Marker position={[25.8286731, 84.0286477]}>
               <Popup>Fahad lives here, come over for a cup of coffee :)</Popup>
             </Marker>
           </MapContainer>
