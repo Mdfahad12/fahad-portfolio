@@ -35,7 +35,7 @@ const Contact = () => {
             progress: undefined,
             theme: "dark",
           });
-          // window.location.reload(false)
+          window.location.reload(false);
         },
         () => {
           toast.error('failed to sent message. please try again!', {
@@ -84,14 +84,15 @@ const Contact = () => {
             <form ref={form} onSubmit={sendEmail}>
               <ul>
                 <li className="half">
-                  <input placeholder="Name" type="text" name="name" required />
+                  <input placeholder="Name" type="text" name="name" required   autoComplete='off'/>
                 </li>
                 <li className="half">
                   <input
                     placeholder="Email"
                     type="email"
                     name="email"
-                    required
+                    required  autoComplete='off'
+                    
                   />
                 </li>
                 <li>
@@ -100,6 +101,7 @@ const Contact = () => {
                     type="text"
                     name="subject"
                     required
+                    autoComplete='off'
                   />
                 </li>
                 <li>
