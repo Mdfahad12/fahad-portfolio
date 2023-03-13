@@ -7,6 +7,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import About from './components/About/About';
 import Contact from './components/contact/Contact';
 import Skills from './components/skills/Skills';
+import Chat from './Chat';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/skill" element={<Skills/>}/>
       </Routes>
+      <Chat/>
       </BrowserRouter>
     </div>
   )
